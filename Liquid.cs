@@ -10,6 +10,7 @@ namespace CoffeeTemp
     {
         public string Name = "Coffee";
         public double Temperature = 172;
+        public string Type = "Hot";
 
     }
 }
