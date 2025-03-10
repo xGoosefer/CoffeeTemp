@@ -23,13 +23,14 @@ namespace CoffeeTemp
         {
             if (time > 1) { timeTYpe = timeTYpe + "s"; }
             initialTemp = liquid.Temperature; //get Liquid Temperature
-            Console.WriteLine($"Hot Coffee has arrived \n Room: {envTemp}, Hot Coffee: {initialTemp}");
+            
             Run();
         }
 
         private void Run()
         {
             //sim loop
+            Console.WriteLine($"Hot Coffee has arrived \n Room: {envTemp}, Hot Coffee: {liquid.Temperature}");
             time++;
             if (timeTYpe == "second")
             {
@@ -45,7 +46,7 @@ namespace CoffeeTemp
 
                 if (liquid.Temperature > envTemp)
                 {
-                    Console.WriteLine($"{liquid.Name} is {liquid.Temperature}{measurementUnit} after {time} {timeTYpe}.");
+                    Console.WriteLine($"The Temperature of Hot {liquid.Name} is now {liquid.Temperature} {measurementUnit} after {time} {timeTYpe}.");
                     Run();
                 }
                 else
