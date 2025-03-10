@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeTemp
 {
-    internal class Liquid
+    internal class Utility
     {
-        public string Name = "Coffee";
-        public double Temperature = 152;
-
+        public static Random RandomNumber = new Random();
+        
     }
 }
