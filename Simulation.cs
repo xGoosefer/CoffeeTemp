@@ -66,7 +66,17 @@ namespace CoffeeTemp
 
         public double NewtonsLawCooling(double initialTemperature, double envTemperature, double coolingConstant, double time)
         {
-            return envTemperature + (initialTemperature - envTemperature) * Math.Exp(-coolingConstant * time);
+            // adjust the speed of the temp change depending on how close the Hot Coffee is to the environment 
+            if (liquid.Temperature > envTemp + 6)
+            {
+                return envTemperature + (initialTemperature - envTemperature) * Math.Exp(-coolingConstant * time);
+            }
+            else
+            {
+                coolingConstant = coolingRate / 10;
+                return envTemperature + (initialTemperature - envTemperature) * Math.Exp(-coolingConstant * time);
+            }
+
         }
     }
 }
