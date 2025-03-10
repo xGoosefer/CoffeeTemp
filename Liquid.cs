@@ -9,7 +9,7 @@ namespace CoffeeTemp
     internal class Liquid
     {
         public string Name = "Coffee";
-        public double Temperature = 152;
+        public double Temperature = 172;
 
     }
 }

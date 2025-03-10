@@ -13,7 +13,7 @@ namespace CoffeeTemp
         Liquid liquid = new Liquid();
         decimal temperature = Utility.RandomNumber.Next(65, 75);
         double initialTemp = 0;
-        double envTemp = 0.1;
+        double envTemp = 75;
         double coolingRate = 0.1;
         double time = 0;
         string timeTYpe = "second";
@@ -23,6 +23,7 @@ namespace CoffeeTemp
         {
             if (time > 1) { timeTYpe = timeTYpe + "s"; }
             initialTemp = liquid.Temperature; //get Liquid Temperature
+            Console.WriteLine($"Hot Coffee has arrived \n Room: {envTemp}, Hot Coffee: {initialTemp}");
             Run();
         }
 
@@ -44,7 +45,7 @@ namespace CoffeeTemp
 
                 if (liquid.Temperature > envTemp)
                 {
-                    Console.WriteLine($"{liquid.Name} id {liquid.Temperature}{measurementUnit} after {time} {timeTYpe}.");
+                    Console.WriteLine($"{liquid.Name} is {liquid.Temperature}{measurementUnit} after {time} {timeTYpe}.");
                     Run();
                 }
                 else
