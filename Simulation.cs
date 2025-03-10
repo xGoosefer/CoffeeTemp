@@ -23,6 +23,48 @@ namespace CoffeeTemp
         {
             if (time > 1) { timeTYpe = timeTYpe + "s"; }
             initialTemp = liquid.Temperature; //get Liquid Temperature
+            Run();
+        }
+
+        private void Run()
+        {
+            //sim loop
+            time++;
+            if (timeTYpe == "second")
+            {
+                if (time > 1) { timeTYpe = timeTYpe + "s"; }
+            }
+            if (time > 200)
+            {
+                Console.WriteLine("over 200");
+            }
+            else
+            {
+                liquid.Temperature = Math.Floor(NewtonsLawCooling(liquid.Temperature, envTemp, coolingRate, time));
+
+                if (liquid.Temperature > envTemp)
+                {
+                    Console.WriteLine($"{liquid.Name} id {liquid.Temperature}{measurementUnit} after {time} {timeTYpe}.");
+                    Run();
+                }
+                else
+                {
+                    Console.WriteLine($"{liquid.Name} is the same tempurature as {envTemp}.");
+                }
+
+            }
+            
+
+        }
+        //calculates temperature at time t 
+        //initial temperature (initialTemperature)
+        //environment temperature (envTemperature)
+        //cooling constant (coolingConstant)
+        //time (time)
+
+        public double NewtonsLawCooling(double initialTemperature, double envTemperature, double coolingConstant, double time)
+        {
+            return envTemperature + (initialTemperature - envTemperature) * Math.Exp(-coolingConstant * time);
         }
     }
 }
