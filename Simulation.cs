@@ -18,16 +18,18 @@ namespace CoffeeTemp
         double time = 0;
         string timeTYpe = "second";
         string measurementUnit = "degrees";
+        
 
         public void SetUp()
         {
             if (time > 1) { timeTYpe = timeTYpe + "s"; }
             initialTemp = liquid.Temperature; //get Liquid 
             Run();
-            liquid.Type = "Iced";
+            liquid.Type = LiquidTempType.Iced;
             liquid.Temperature = 50;
             time = 0;
             Run();
+           
         }
 
         private void Run()
