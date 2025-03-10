@@ -22,8 +22,11 @@ namespace CoffeeTemp
         public void SetUp()
         {
             if (time > 1) { timeTYpe = timeTYpe + "s"; }
-            initialTemp = liquid.Temperature; //get Liquid Temperature
-            
+            initialTemp = liquid.Temperature; //get Liquid 
+            Run();
+            liquid.Type = "Iced";
+            liquid.Temperature = 50;
+            time = 0;
             Run();
         }
 
@@ -38,13 +41,13 @@ namespace CoffeeTemp
             }
             if (time > 200)
             {
-                Console.WriteLine("over 200");
+                Console.WriteLine($"Over 200 {timeTYpe} have passed and {liquid.Type} {liquid.Name} is still {liquid.Temperature} {measurementUnit}!");
             }
             else
             {
                 liquid.Temperature = Math.Floor(NewtonsLawCooling(liquid.Temperature, envTemp, coolingRate, time));
 
-                if (liquid.Temperature > envTemp)
+                if (liquid.Temperature != envTemp)
                 {
                     Console.WriteLine($"The Temperature of {liquid.Type}" +
                         $" {liquid.Name} is now {liquid.Temperature} {measurementUnit} after {time} {timeTYpe}.");
@@ -52,7 +55,7 @@ namespace CoffeeTemp
                 }
                 else
                 {
-                    Console.WriteLine($"{liquid.Name} is the same tempurature as {envTemp}.");
+                    Console.WriteLine($"{liquid.Name} is the same tempurature as the Room ({envTemp} {measurementUnit}). \n");
                 }
 
             }
@@ -73,11 +76,12 @@ namespace CoffeeTemp
             {
                 return envTemperature + (initialTemperature - envTemperature) * Math.Exp(-coolingConstant * time);
             }
-            else
+            else 
             {
-                coolingConstant = coolingRate / 10;
+                coolingConstant = coolingRate / 5;
                 return envTemperature + (initialTemperature - envTemperature) * Math.Exp(-coolingConstant * time);
             }
+            
 
         }
     }
